@@ -1,0 +1,172 @@
+﻿<mvvm:CustomUserControl x:Class="VectorEditor.Views.CommandPanelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mvvm="clr-namespace:VectorEditor.Core.MVVM"
+             xmlns:viewModels="clr-namespace:VectorEditor.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:helpers="clr-namespace:VectorEditor.Core.MVVM.Helpers"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModels:CommandPanelViewModel}"
+             x:Name="Root"
+             Background="Transparent"
+             Height="48">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="PreviewMouseDown">
+            <helpers:EventCommandExecuter Command="{Binding ClickCommand, Mode=OneWay}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid
+         Background="Transparent">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Menu IsMainMenu="True">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Загрузить вектор"
+                          Command="{Binding  LoadVectorCommand, Mode=OneWay}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="VectorDifferenceAb" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Сохранить как вектор"
+                          Command="{Binding  SaveVectorCommand, Mode=OneWay}"
+                          IsEnabled="{Binding IsSaveVectorVisible,Mode=OneWay}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="VectorPolygon" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Сохранить как растровое изображение (.png)"
+                          Command="{Binding SaveRastCommand, Mode=OneWay}"
+                          IsEnabled="{Binding IsSaveRusterVisible, Mode=OneWay}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="FileImage" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Распечатать"
+                          Command="{Binding PrintCommand, Mode=OneWay}"
+                          IsEnabled="{Binding IsSaveRusterVisible, Mode=OneWay}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="FileImage" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Выход" InputGestureText="Ctrl+E"
+                          Command="{Binding ExitCommandCommand, Mode=OneWay}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ExitToApp" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Вид">
+                <MenuItem Header="Добавить прямоугольник"
+                          Command="{Binding AddRectangleCommand, Mode=OneWay}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ShapeRectanglePlus" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Добавить ломаную линию"
+                          Command="{Binding AddPolylineShapeCommand, Mode=OneWay}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ShapePolygonPlus" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Отменить операцию"
+                          IsEnabled="{Binding IsUndoOperationVisible, Mode=OneWay}"
+                          Command="{Binding UndoOperationCommand, Mode=OneWay}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="UndoVariant" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Удалить выделенный элемент" 
+                          IsEnabled="{Binding IsRemoveSelectedShapeVisible, Mode=OneWay}"
+                          Command="{Binding RemoveSelectedShapeCommand, Mode=OneWay}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ContentCut" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <ToggleButton
+            Margin="8 0 0 0"
+            MaxWidth="48"
+            Grid.Column="1" 
+            ToolTip="Режим перетаскивания холста"
+            Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+            Command="{Binding IsDragModeCommand, Mode=OneWay}"
+            IsChecked="{Binding IsDragMode, Mode=OneWay}">
+            <materialDesign:PackIcon
+                Kind="Hand"
+                Height="21"
+                Width="21" />
+        </ToggleButton>
+        <Grid Grid.Column="2"
+              Margin="16 0 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Размер холста"
+                       FontSize="16"
+                       VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="1" 
+                       Text="{Binding CanvasOperationService.CanvasSize, Mode=OneWay, Converter={StaticResource CanvasSizeToTextConverter}}"
+                       FontSize="16"
+                       Margin="16 0 0 0"
+                       VerticalAlignment="Center"/>
+            <StackPanel Grid.Column="2"
+                        Margin="16 0 0 0"
+                        Orientation="Horizontal">
+                <Button
+                    Height="24"
+                    Width="24" 
+                    Command="{Binding CanvasOperationService.DecreaseCanvasSizeCommand, Mode=OneWay}"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                    ToolTip="Уменьшить размер холста">
+                    <materialDesign:PackIcon
+                        Kind="Minus"
+                        Height="12"
+                        Width="12" />
+                </Button>
+                <Button
+                    Height="24"
+                    Width="24" 
+                    Margin="4 0 0 0"
+                    Command="{Binding CanvasOperationService.IncreaseCanvasSizeCommand, Mode=OneWay}"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                    ToolTip="Увеличить размер холста">
+                    <materialDesign:PackIcon
+                        Kind="Plus"
+                        Height="12"
+                        Width="12" />
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="3"
+              Margin="32 0 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Коэффициент масштабирования холста"
+                       FontSize="16"
+                       VerticalAlignment="Center"/>
+            <ComboBox Grid.Column="1"
+                      Margin="16 0 0 0"
+                      Width="50"
+                      SelectedItem="{Binding SelectedCanvasScale,Mode=TwoWay}"
+                      ItemsSource="{Binding CanvasScaleRange, Mode=OneWay}">
+
+            </ComboBox>
+        </Grid>
+    </Grid>
+</mvvm:CustomUserControl>

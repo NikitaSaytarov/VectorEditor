@@ -1,0 +1,179 @@
+﻿<mvvm:CustomUserControl x:Class="VectorEditor.Views.PropertiesPanelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mvvm="clr-namespace:VectorEditor.Core.MVVM"
+             xmlns:viewModels="clr-namespace:VectorEditor.ViewModels"
+             xmlns:data="clr-namespace:VectorEditor.Domain.Data"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:helpers="clr-namespace:VectorEditor.Core.MVVM.Helpers"
+             mc:Ignorable="d" 
+             x:Name="Root"
+             Background="Transparent"
+             d:DataContext="{d:DesignInstance viewModels:PropertiesPanelViewModel}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="PreviewMouseDown">
+            <helpers:EventCommandExecuter Command="{Binding ClickCommand, Mode=OneWay}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid
+        Visibility="{Binding Model, Mode=OneWay, Converter={StaticResource NullableToVisibilityConverter}}"
+        Margin="12 0 12 0">
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type data:RectangleShape}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"
+                                          MaxWidth="100"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Толщина границы: "
+                               FontSize="16"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" 
+                               FontSize="16"
+                               VerticalAlignment="Center" Text="Высота прямоугольника: "/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" 
+                               FontSize="16"
+                               VerticalAlignment="Center" Text="Ширина прямоугольника: "/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" 
+                               FontSize="16"
+                               VerticalAlignment="Center" Text="Цвет закраски: "/>
+                    <TextBlock Grid.Row="4" Grid.Column="0" 
+                               FontSize="16"
+                               VerticalAlignment="Center" Text="Цвет границы: "/>
+                    <TextBox Grid.Row="0" Grid.Column="1"
+                             VerticalAlignment="Center"
+                             PreviewTextInput="UIElement_OnPreviewTextInput"
+                             Text="{Binding BorderThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Width="100"/>
+                    <TextBox Grid.Row="1" Grid.Column="1"
+                             VerticalAlignment="Center"
+                             PreviewTextInput="UIElement_OnPreviewTextInput"
+                             Text="{Binding Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
+                             Width="100">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SourceUpdated">
+                                <helpers:EventCommandExecuter Command="{Binding ElementName=Root, Path=DataContext.ShapePropertyChangedCommand, Mode=OneWay}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
+                    <TextBox Grid.Row="2" Grid.Column="1"
+                             VerticalAlignment="Center"
+                             PreviewTextInput="UIElement_OnPreviewTextInput"
+                             Text="{Binding Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
+                             Width="100">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SourceUpdated">
+                                <helpers:EventCommandExecuter Command="{Binding ElementName=Root, Path=DataContext.ShapePropertyChangedCommand, Mode=OneWay}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
+                    <ComboBox Grid.Row="3" 
+                              Grid.Column="1" 
+                              SelectedItem="{Binding BackgroundBrush, Mode=TwoWay, Converter={StaticResource BrushesConverter}}"
+                              ItemsSource="{Binding ElementName=Root, Mode=OneWay, Path=DataContext.AppColorService.Colors}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderThickness="0" Height="20" Width="20" 
+                                            Background="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox Grid.Row="4" 
+                              Grid.Column="1" 
+                              SelectedItem="{Binding BorderBrush, Mode=TwoWay, Converter={StaticResource BrushesConverter}}"
+                              ItemsSource="{Binding ElementName=Root, Mode=OneWay, Path=DataContext.AppColorService.Colors}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderThickness="0" Height="20" Width="20" 
+                                            Background="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                </Grid>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type data:PolylineShape}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"
+                                          MaxWidth="100"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Толщина границы: "
+                               FontSize="16"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" 
+                               FontSize="16"
+                               VerticalAlignment="Center" Text="Цвет закраски: "/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" 
+                               FontSize="16"
+                               VerticalAlignment="Center" Text="Цвет границы: "/>
+                    <TextBox Grid.Row="0" Grid.Column="1"
+                             VerticalAlignment="Center"
+                             PreviewTextInput="UIElement_OnPreviewTextInput"
+                             Text="{Binding BorderThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Width="100"/>
+                    <ComboBox Grid.Row="1" 
+                              Grid.Column="1" 
+                              SelectedItem="{Binding BackgroundBrush, Mode=TwoWay, Converter={StaticResource BrushesConverter}}"
+                              ItemsSource="{Binding ElementName=Root, Mode=OneWay, Path=DataContext.AppColorService.Colors}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderThickness="0" Height="20" Width="20" 
+                                            Background="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox Grid.Row="2" 
+                              Grid.Column="1" 
+                              SelectedItem="{Binding BorderBrush, Mode=TwoWay, Converter={StaticResource BrushesConverter}}"
+                              ItemsSource="{Binding ElementName=Root, Mode=OneWay, Path=DataContext.AppColorService.Colors}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderThickness="0" Height="20" Width="20" 
+                                            Background="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                </Grid>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type data:EmptyShape}">
+                <TextBlock Text="Фигура не выделена"
+                           FontSize="16"/>
+            </DataTemplate>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="СВОЙСТВА ФИГУРЫ"
+                       Foreground="{StaticResource AccentBaseColorBrush}"
+                       FontSize="16"/>
+        <ContentControl Grid.Row="1" Content="{Binding Model, Mode=OneWay}"
+                        Margin="0 16"/>
+    </Grid>
+</mvvm:CustomUserControl>

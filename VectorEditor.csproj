@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BF28B47E-CCAB-4C40-9697-F243F176549F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>VectorEditor</RootNamespace>
+    <AssemblyName>VectorEditor</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=2018.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.2018.2.1\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LightInject.5.4.0\lib\netstandard1.1\LightInject.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.6.5\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapster, Version=3.3.2.0, Culture=neutral, PublicKeyToken=2f39883af23c29a8, processorArchitecture=MSIL">
+      <HintPath>..\..\Users\psy-e\source\repos\WpfApp1\packages\Mapster.3.3.2\lib\net45\Mapster.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.0.0.14576, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.1\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.0.1205, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.5.0.1205\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.4.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\..\Users\psy-e\source\repos\WpfApp1\packages\protobuf-net.2.4.0\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.2.8.0\lib\net45\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Enrichers.Thread, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Enrichers.Thread.3.0.0\lib\net45\Serilog.Enrichers.Thread.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Formatting.Compact, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Formatting.Compact.1.0.0\lib\net45\Serilog.Formatting.Compact.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.File, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.File.4.0.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.RollingFile, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.RollingFile.3.3.0\lib\net45\Serilog.Sinks.RollingFile.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Converters\BrushesConverter.cs" />
+    <Compile Include="Converters\CanvasSizeToTextConverter.cs" />
+    <Compile Include="Converters\DrawingShapeToOpacityConverter.cs" />
+    <Compile Include="Converters\InverseBoolConverter.cs" />
+    <Compile Include="Converters\SelectedShapeConverter.cs" />
+    <Compile Include="Core\ApplicationInitializer.cs" />
+    <Compile Include="Core\Mapping\ShapesMappingProfile.cs" />
+    <Compile Include="Core\MVVM\Commands\RelayCommand.cs" />
+    <Compile Include="Core\MVVM\Commands\RelayCommandWithParameters.cs" />
+    <Compile Include="Core\MVVM\Helpers\EventCommandExecuter.cs" />
+    <Compile Include="Domain\Data\EmptyShape.cs" />
+    <Compile Include="Domain\Data\Persistence\PolylineShapeDto.cs" />
+    <Compile Include="Domain\Data\Persistence\RectangleShapeDto.cs" />
+    <Compile Include="Domain\Data\Persistence\ShapeDto.cs" />
+    <Compile Include="Domain\Data\Persistence\CanvasState.cs" />
+    <Compile Include="Domain\Data\Persistence\SizeInfo.cs" />
+    <Compile Include="Domain\Data\Persistence\VertexInfo.cs" />
+    <Compile Include="Domain\Data\PolylineShape.cs" />
+    <Compile Include="Domain\Data\RectangleShape.cs" />
+    <Compile Include="Domain\Data\Vertex.cs" />
+    <Compile Include="Resources\Editor\MoveResize\MoveThumb.cs" />
+    <Compile Include="Resources\Editor\MoveResize\PolylineMoveThumb.cs" />
+    <Compile Include="Resources\Editor\MoveResize\ResizeThumb.cs" />
+    <Compile Include="Resources\TemplateSelectors\ViewTemplateSelector.cs" />
+    <Compile Include="Services\AppColorsService\AppColorService.cs" />
+    <Compile Include="Services\ByteCompressor\ByteCompressor.cs" />
+    <Compile Include="Services\CanvasOperation\CanvasOperationService.cs" />
+    <Compile Include="Services\CanvasOperation\ICanvasOperation.cs" />
+    <Compile Include="Services\RasterLoader\IRasterLoader.cs" />
+    <Compile Include="Services\RasterLoader\RasterLoader.cs" />
+    <Compile Include="Services\SerializeService\Binary\IBinarySerializer.cs" />
+    <Compile Include="Services\SerializeService\Binary\ProtobufSerializer.cs" />
+    <Compile Include="Services\ShapesProvider\ICanvasHistoryManager.cs" />
+    <Compile Include="Services\ShapesProvider\IShapeProvider.cs" />
+    <Compile Include="Services\ShapesProvider\ShapeProvider.cs" />
+    <Compile Include="Services\VectorLoader\IVectorCanvasLoader.cs" />
+    <Compile Include="Services\VectorLoader\VectorCanvasLoader.cs" />
+    <Compile Include="ViewModels\Actions\AddPolylineAction.cs" />
+    <Compile Include="ViewModels\Actions\AddRectangleAction.cs" />
+    <Compile Include="ViewModels\Actions\CancelDrawingShapeAction.cs" />
+    <Compile Include="ViewModels\Actions\CanvasHistoryChangedAction.cs" />
+    <Compile Include="ViewModels\Actions\CanvasScaleRangeChangedAction.cs" />
+    <Compile Include="ViewModels\Actions\CanvasVectorLoadedAction.cs" />
+    <Compile Include="ViewModels\Actions\DragModeChanged.cs" />
+    <Compile Include="ViewModels\Actions\EmptyCanvasAction.cs" />
+    <Compile Include="ViewModels\Actions\ExitAction.cs" />
+    <Compile Include="ViewModels\Actions\FillCanvasAction.cs" />
+    <Compile Include="ViewModels\Actions\LoadVectorAction.cs" />
+    <Compile Include="ViewModels\Actions\PrintCanvasAction.cs" />
+    <Compile Include="ViewModels\Actions\RemoveSelectedShapeAction.cs" />
+    <Compile Include="ViewModels\Actions\SaveRasterAction.cs" />
+    <Compile Include="ViewModels\Actions\SaveVectorAction.cs" />
+    <Compile Include="ViewModels\Actions\ShapeOnCanvasSelectedAction.cs" />
+    <Compile Include="ViewModels\Actions\UndoOperationAction.cs" />
+    <Compile Include="Converters\VerticesConverter.cs" />
+    <Compile Include="Views\CanvasView.xaml.cs">
+      <DependentUpon>CanvasView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandPanelView.xaml.cs">
+      <DependentUpon>CommandPanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertiesPanelView.xaml.cs">
+      <DependentUpon>PropertiesPanelView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\CanvasView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\MVVM\Base\ActionBase.cs" />
+    <Compile Include="Core\MVVM\Base\IModel.cs" />
+    <Compile Include="Core\MVVM\Base\ModelBase.cs" />
+    <Compile Include="Core\MVVM\Base\NotifyObject.cs" />
+    <Compile Include="Core\MVVM\Base\ViewModelBase.cs" />
+    <Compile Include="Core\MVVM\Base\ViewModelBaseWithModel.cs" />
+    <Compile Include="Core\MVVM\Base\CustomUserControl.cs" />
+    <Compile Include="Core\MVVM\IModelFactory.cs" />
+    <Compile Include="Core\MVVM\ModelFactory.cs" />
+    <Compile Include="Core\MVVM\ViewModelFactory\IViewModelFactory.cs" />
+    <Compile Include="Core\MVVM\ViewModelFactory\ViewModelFactory.cs" />
+    <Compile Include="Domain\Data\Shape.cs" />
+    <Compile Include="ViewModels\CanvasViewModel.cs" />
+    <Compile Include="ViewModels\CommandPanelViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesPanelViewModel.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\CommandPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PropertiesPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
